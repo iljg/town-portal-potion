@@ -1,6 +1,8 @@
-package com.iljg.townportalpotion;
+package net.iljg.townportalpotion;
 
 import com.mojang.logging.LogUtils;
+import net.iljg.townportalpotion.item.TPPotionItem;
+import net.iljg.townportalpotion.utils.igEffects;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -8,7 +10,6 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -18,14 +19,15 @@ import org.slf4j.Logger;
 @Mod(TownPortalPotion.MOD_ID)
 public class TownPortalPotion
 {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "townportalpotion";
-    // Directly reference a slf4j logger
+
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public TownPortalPotion(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
+        TPPotionItem.POTIONS.register(modEventBus);
+        igEffects.EFFECTS.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
