@@ -1,8 +1,11 @@
 package net.iljg.townportalpotion;
 
 import com.mojang.logging.LogUtils;
-import net.iljg.townportalpotion.item.TPPotionItem;
-import net.iljg.townportalpotion.utils.igEffects;
+import net.iljg.townportalpotion.registers.EffectsRegister;
+import net.iljg.townportalpotion.registers.PotionRegister;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,19 +18,21 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
+import static net.minecraft.world.item.alchemy.PotionBrewing.*;
+
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(TownPortalPotion.MOD_ID)
+@Mod(TownPortalPotion.MODID)
 public class TownPortalPotion
 {
-    public static final String MOD_ID = "townportalpotion";
+    public static final String MODID = "townportalpotion";
 
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public TownPortalPotion(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
-        TPPotionItem.POTIONS.register(modEventBus);
-        igEffects.EFFECTS.register(modEventBus);
+        EffectsRegister.register();
+        PotionRegister.register();
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
@@ -38,7 +43,7 @@ public class TownPortalPotion
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        // PotionBrewing.addMix(Potions.AWKWARD, Items.ENDER_PEARL, PotionRegister.TOWN_PORTAL.get());
     }
 
     // Add the example block item to the building blocks tab
@@ -55,7 +60,7 @@ public class TownPortalPotion
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent

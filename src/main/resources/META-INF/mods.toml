@@ -6,12 +6,12 @@ license="MIT"
 issueTrackerURL="https://github.com/iljg/town-portal-potion/issues"
 
 [[mods]]
-modId=""
+modId="townportalpotion"
 version="${mod_version}"
 displayName="Town Portal Potion (Forge)"
 displayURL="https://github.com/iljg/town-portal-potion/"
 authors="iljg"
-description='''Simpe potion that teleports player back to their bed/spawn'''
+description='''Simple potion that teleports player back to their bed/spawn'''
 
 [[dependencies.townportalpotion]]
     modId="forge"

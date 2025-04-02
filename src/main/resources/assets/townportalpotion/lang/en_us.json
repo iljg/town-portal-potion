@@ -1,0 +1,7 @@
+{
+  "item.minecraft.potion.effect.town_portal": "Town Portal Potion",
+  "item.minecraft.splash_potion.effect.town_portal": "Town Portal Splash Potion",
+  "item.minecraft.lingering_potion.effect.town_portal": "Lingering Town Portal Potion",
+  "item.minecraft.tipped_arrow.effect.town_portal": "Arrow of Town Portal",
+  "effect.townportalpotion.teleport": "Teleport Home"
+}
